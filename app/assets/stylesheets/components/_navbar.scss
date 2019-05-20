@@ -8,5 +8,11 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 50px;
+  opacity: 0.5;
+  hover: 1;
+}
+
+.navbar-lewagon .navbar-brand img:hover {
+  opacity: 1;
 }
