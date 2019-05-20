@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
 
     if @booking.save
-      redirect_to bookings_index_path
+      redirect_to property_path
     else
       render :new
     end
@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(booking_params)
-    redirect_to bookings_index_path
+    redirect_to property_bookings_path
   end
 
   def destroy
@@ -42,6 +42,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:name, :location, :photo, :rating, :category, :price, :available, :user)
+    params.require(:booking).permit(:check_in_date, :check_out_date, :num_guests, :description, :tot_price, :user, :property)
   end
 end
