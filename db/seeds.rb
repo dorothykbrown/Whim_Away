@@ -7,17 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'Cleaning database...'
 Property.destroy_all
+user = User.all.sample
+user = User.create(email: Faker::Internet.email, password: Faker::Internet.password)
 
 30.times do
   category = %w(Castle Treehouse Sailboat).sample
   attributes = {
     name: Faker::Name,
-    address: Faker::Address.unique,
+    location: Faker::Address.unique,
     photo: "https://source.unsplash.com/1600x900/?#{category}",
     rating: rand(1..5),
+    category: category,
     price: rand(90..400).round(-1),
     available: [true, false].sample,
-    category: category
+    user:id: Faker::Number.number(10),
+    created_at: Faker::Date.between(10.days.ago, 12.days.ago),
+    updated_at: Faker::Date.between(2.days.ago, Date.today),
+    user: user,
 }
 end
 
