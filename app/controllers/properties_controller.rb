@@ -2,22 +2,28 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
 
   def index
-    @properties = Property.all
+    @properties = policy_scope(Property).all
+    # use javascript to filter all properties
   end
 
   def show
-    @properties = Property.where(category: params[:category])
+    # @properties = Property.where(category: params[:category
+    @property = Property.find(params[:id])
+    authorize @property
   end
 
   def new
     @property = Property.new
+    authorize @property
   end
 
   def create
     @property = Property.new(property_params)
+    @property.user = current_user
+    authorize @property
 
     if @property.save
-      redirect_to properties_index_path
+      redirect_to properties_index_path, notice: 'Property was successfully created.'
     else
       render :new
     end
@@ -27,11 +33,16 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    @property.update(property_params)
-    redirect_to properties_index_path
+    authorize @property
+    if @property.update(property_params)
+      redirect_to properties_index_path, notice: 'Property was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
+    authorize @property
     @property.destroy
   end
 

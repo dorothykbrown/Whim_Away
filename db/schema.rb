@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_144337) do
     t.string "category", null: false
     t.integer "price", null: false
     t.boolean "available"
+    t.string "type"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
