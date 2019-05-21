@@ -3,6 +3,13 @@
   background: white;
 }
 
+.navbar h2 {
+  text-align: center;
+  font-family: $logo-font;
+  font-size: 40px;
+  color: #4da0dc;
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
