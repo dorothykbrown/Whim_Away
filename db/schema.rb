@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_144337) do
+ActiveRecord::Schema.define(version: 2019_05_20_132934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2019_05_20_144337) do
     t.datetime "check_in_date", null: false
     t.datetime "check_out_date", null: false
     t.integer "num_guests", null: false
-    t.text "description", null: false
     t.integer "tot_price", null: false
     t.bigint "user_id"
     t.bigint "property_id"
@@ -31,13 +30,13 @@ ActiveRecord::Schema.define(version: 2019_05_20_144337) do
 
   create_table "properties", force: :cascade do |t|
     t.string "name", null: false
-    t.string "location", null: false
+    t.string "address", null: false
     t.string "photo", null: false
     t.integer "rating"
     t.string "category", null: false
     t.integer "price", null: false
+    t.text "description", null: false
     t.boolean "available"
-    t.string "type"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,6 +44,9 @@ ActiveRecord::Schema.define(version: 2019_05_20_144337) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "photo", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
