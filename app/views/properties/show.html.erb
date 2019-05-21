@@ -5,7 +5,7 @@
       <h2><%= @property.name %></h2>
 
       <ul>
-        <li>Address:  <%= @property.location %></li>
+        <li>Address:  <%= @property.address %></li>
         <li>Rating:  <%= '⭐️' * @property.rating.to_i %></li>
         <li>Category:  <%= @property.category %></li>
       </ul>
@@ -13,14 +13,17 @@
       <div class="row btn">
         <%= link_to '<< Back', properties_path %>
         <% if  policy(@property).edit? %>
-        <%= link_to 'EDIT', edit_property_path(@property)%>
-        <%= link_to 'DESTROY', property_path(@property)%>
+          <%= link_to 'EDIT', edit_property_path(@property)%>
+        <% end %>
+        <% if  policy(@property).destroy? %>
+          <%= link_to 'DESTROY', property_path(@property), data: { confirm: 'Are you sure?' } %>
         <% end %>
       </div>
     </div>
 
     <div class="col-sm mt-3">
       <%= image_tag(@property.photo, height: '300', width: '500') %>
+
     </div>
   </div>
 </div>
