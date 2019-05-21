@@ -1,7 +1,10 @@
-<h1>Properties#index</h1>
-<ul>
-  <% @properties.each do |property| %>
-    <li><%= property.name %> <%= property.address %></li>
-</ul>
-
-<p>Find me in app/views/properties/index.html.erb</p>
+<div class="container mt-3 pb-3">
+  <h2>Check out our properties</h2>
+  <div class="cards mt-3">
+    <% @properties.each do |property| %>
+    <div class="card-category" style="background-image: url(<%= property.photo %>)">
+      <%= link_to property.name, property_path(property) %>
+    </div>
+    <% end %>
+  </div>
+</div>
