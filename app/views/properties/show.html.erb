@@ -1,2 +1,15 @@
-<h1>Properties#show</h1>
-<p>Find me in app/views/properties/show.html.erb</p>
+<div class="container">
+  <h2><%= @property.name %></h2>
+
+<ul>
+  <li><%= @property.location %></li>
+  <li><%= '⭐️' * @property.rating.to_i %></li>
+  <li><%= @property.category %></li>
+</ul>
+
+  <div class="d-flex flex-column">
+    <div>
+      <%= link_to '<< Back', properties_path %>
+    </div>
+  </div>
+</div>
