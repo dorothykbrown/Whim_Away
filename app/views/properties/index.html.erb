@@ -1,2 +1,7 @@
 <h1>Properties#index</h1>
+<ul>
+  <% @properties.each do |property| %>
+    <li><%= property.name %> <%= property.address %></li>
+</ul>
+
 <p>Find me in app/views/properties/index.html.erb</p>
