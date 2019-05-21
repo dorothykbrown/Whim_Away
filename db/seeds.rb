@@ -13,19 +13,16 @@ user = User.create(email: Faker::Internet.email, password: Faker::Internet.passw
 30.times do
   category = %w(Castle Treehouse Sailboat).sample
   attributes = {
-    name: Faker::Name,
-    location: Faker::Address.unique,
+    name: Faker::Movies::StarWars.character,
+    location: Faker::Address.unique.full_address,
     photo: "https://source.unsplash.com/1600x900/?#{category}",
     rating: rand(1..5),
     category: category,
     price: rand(90..400).round(-1),
     available: [true, false].sample,
-    user:id: Faker::Number.number(10),
-    created_at: Faker::Date.between(10.days.ago, 12.days.ago),
-    updated_at: Faker::Date.between(2.days.ago, Date.today),
     user: user,
 }
+  Property.create(attributes)
 end
 
-Property.create(attributes)
 puts 'Finished!'
