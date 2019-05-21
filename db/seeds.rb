@@ -26,7 +26,7 @@ user = User.create(
     price: rand(90..400).round(-1),
     available: [true, false].sample,
     user: user,
-    description:"Lorem ipsom blah blah blah"
+    description:"Lorem ipsom blah blah blah blah"
 }
   Property.create(attributes)
 end
