@@ -7,6 +7,7 @@ class CreateProperties < ActiveRecord::Migration[5.2]
       t.integer :rating
       t.string :category, null: false
       t.integer :price, null: false
+      t.text :description, null: false
       t.boolean :available
       t.references :user, foreign_key: true
 
