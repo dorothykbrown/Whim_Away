@@ -1,10 +1,37 @@
 <div class="container mt-3 pb-3">
-  <h2>Check out our properties</h2>
-  <div class="cards mt-3">
-    <% @properties.each do |property| %>
-    <div class="card-category" style="background-image: url(<%= property.photo %>)">
-      <%= link_to property.name, property_path(property) %>
+  <div class="row justify-content-between">
+    <div class="col-4">
+      <div class="form-wrapper" style="width: 305px; margin: 0 auto;">
+        <h3>Search by date</h3>
+
+        <%= simple_form_for :search, method: "get" do |f| %>
+        <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker"} %>
+        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker"} %>
+        <%= f.button :submit, "Go", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
-    <% end %>
+
+    <div class="col-8">
+      <h3>Check out our properties</h3>
+      <div class="cards">
+        <% @properties.each do |property| %>
+        <div class="card-trip">
+           <%= link_to property_path(property) do %>
+          <img src= <%= property.photo %> >
+          <% end %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= link_to property.name, property_path(property) %></h2>
+              <p><%= property.category %></p>
+            </div>
+            <h3 class="card-trip-pricing">$<%= property.price %>/day</h3>
+          </div>
+        </div>
+
+        <% end %>
+      </div>
+    </div>
   </div>
+</div>
 </div>
