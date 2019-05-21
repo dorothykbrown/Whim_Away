@@ -2,7 +2,7 @@
   <h2><%= @property.name %></h2>
 
 <ul>
-  <li><%= @property.location %></li>
+  <li><%= @property.address %></li>
   <li><%= '⭐️' * @property.rating.to_i %></li>
   <li><%= @property.category %></li>
 </ul>
@@ -10,8 +10,12 @@
   <div class="d-flex flex-column">
     <div>
       <%= link_to '<< Back', properties_path %>
-      <%= link_to 'EDIT', edit_property_path %>
-      <%= link_to 'DESTROY', property_path(@property) %>
+      <% if policy(@property).edit? %>
+        <%= link_to 'EDIT', edit_property_path %>
+      <% end %>
+      <% if policy(@property).destroy? %>
+        <%= link_to 'DESTROY', property_path(@property), data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </div>
   </div>
 </div>
