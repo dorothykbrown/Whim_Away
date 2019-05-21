@@ -10,14 +10,20 @@ class PropertyPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    user_is_owner_of_record?
   end
 
   def destroy?
-    record.user == user
+    user_is_owner_of_record?
   end
 
   def create?
     true
+  end
+
+  private
+
+  def user_is_owner_of_record?
+    @user == @record.user # || admin
   end
 end
