@@ -8,12 +8,7 @@
 puts 'Cleaning database...'
 Property.destroy_all
 user = User.all.sample
-user = User.create(
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  photo: "https://thispersondoesnotexist.com/",
-  email: Faker::Internet.email,
-  password: Faker::Internet.password)
+user = User.create(email: Faker::Internet.email, password: Faker::Internet.password)
 
 30.times do
   category = %w(Castle Treehouse Sailboat).sample
