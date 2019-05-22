@@ -21,7 +21,7 @@ user = User.create(email: Faker::Internet.email, password: Faker::Internet.passw
     price: rand(90..400).round(-1),
     available: [true, false].sample,
     user: user,
-    description:"Lorem ipsom blah blah blah blah"
+    description:Faker::Quotes::Shakespeare.hamlet_quote
 }
   Property.create(attributes)
 end
