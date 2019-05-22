@@ -4,11 +4,18 @@
   grid-gap: 16px;
 }
 
+.category-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
 .card-category {
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.8;
-  height: 180px;
+  height: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,7 +104,6 @@
   opacity: .7;
   margin: 0;
 }
-
 
 .card-trip .card-trip-infos {
   padding: 16px;
