@@ -1,9 +1,10 @@
-<%= simple_form_for property do |f| %>
+<%= simple_form_for @property do |f| %>
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :photo %>
   <%= f.input :rating %>
   <%= f.input :category %>
+  <%= f.input :description %>
   <%= f.input :price %>
-  <%= f.submit button_label %>
+  <%= f.submit %>
 <% end %>

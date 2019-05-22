@@ -1,10 +1,11 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
-  before_action :authorize_property, only: %i[show new create update destroy]
+  before_action :authorize_property, only: %i[show update destroy]
 
   def index
     # @properties = policy_scope(Property).all
     # use javascript to filter all properties
+
     @properties = policy_scope(Property).all
     @properties.where.not(latitude: nil, longitude: nil)
 
@@ -28,9 +29,10 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     @property.user = current_user
+    authorize @property
 
     if @property.save
-      redirect_to properties_index_path, notice: 'Property was successfully created.'
+      redirect_to properties_path, notice: 'Property was successfully created.'
     else
       render :new
     end
@@ -41,7 +43,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update(property_params)
-      redirect_to properties_index_path, notice: 'Property was successfully updated.'
+      redirect_to properties_path, notice: 'Property was successfully updated.'
     else
       render :edit
     end
