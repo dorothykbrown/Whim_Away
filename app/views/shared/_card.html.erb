@@ -1,0 +1,15 @@
+<div class="cards">
+       <% @properties.each do |property| %>
+       <div class="card-trip">
+        <%= link_to property_path(property) do %>
+        <img src= <%= property.photo %> >
+        <% end %>
+        <div class="card-trip-infos">
+         <div>
+           <h2><%= link_to property.name, property_path(property) %></h2>
+           <p><%= property.category %></p>
+         </div>
+         <h3 class="card-trip-pricing">$<%= property.price %>/day</h3>
+       </div>
+     </div>
+     <% end %>
