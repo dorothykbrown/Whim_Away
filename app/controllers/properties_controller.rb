@@ -6,8 +6,8 @@ class PropertiesController < ApplicationController
     # @properties = policy_scope(Property).all
     # use javascript to filter all properties
 
-    @properties = policy_scope(Property).all
-    @properties.where.not(latitude: nil, longitude: nil)
+    @properties = policy_scope(Property).where.not(latitude: nil, longitude: nil)
+    # @properties.where.not(latitude: nil, longitude: nil)
 
     @markers = @properties.map do |property|
       {
