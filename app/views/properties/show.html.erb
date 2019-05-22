@@ -1,29 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm mt-3">
-
-      <h2><%= @property.name %></h2>
-
-      <ul>
-        <li>Address:  <%= @property.address %></li>
-        <li>Rating:  <%= '⭐️' * @property.rating.to_i %></li>
-        <li>Category:  <%= @property.category %></li>
-      </ul>
-      <br>
-      <div class="row btn">
-        <%= link_to '<< Back', properties_path %>
-        <% if  policy(@property).edit? %>
-          <%= link_to 'EDIT', edit_property_path(@property)%>
-        <% end %>
-        <% if  policy(@property).destroy? %>
-          <%= link_to 'DESTROY', property_path(@property), data: { confirm: 'Are you sure?' } %>
-        <% end %>
+    <div class="col mt-3">
+      <div class="property">
+        <h2><%= @property.name %></h2>
+        <h3><%= '⭐️' * @property.rating.to_i %></h3>
+        <h5><em><%= @property.category %></em></h5>
+        <h6><%= @property.address %></h6>
+        <ul>
+          <li><b>Price per night:</b> $<%= @property.price %></li>
+          <li><%= @property.description %></li>
+        </ul>
       </div>
     </div>
-
-    <div class="col-sm mt-3">
-      <%= image_tag(@property.photo, height: '300', width: '500') %>
-
+    <div class="col mt-3">
+      <div class="property-image">
+        <%= image_tag(@property.photo) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col p-3">
+      <div class="btn btn-outline-primary">
+        <%= link_to 'Back', properties_path %>
+        <% if  policy(@property).edit? %>
+        <%= link_to 'EDIT', edit_property_path(@property)%>
+        <% end %>
+        <% if  policy(@property).destroy? %>
+        <%= link_to 'DESTROY', property_path(@property), data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
