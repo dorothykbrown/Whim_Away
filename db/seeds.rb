@@ -9,12 +9,13 @@ puts 'Cleaning database...'
 Property.destroy_all
 user = User.all.sample
 user = User.create(email: Faker::Internet.email, password: Faker::Internet.password)
+addresses = ["lisbon, portugal", "sevilla, spain", "new york, new york"]
 
 30.times do
   category = %w(Castle Treehouse Sailboat).sample
   attributes = {
     name: Faker::Movies::StarWars.character,
-    address: Faker::Address.unique.full_address,
+    address: addresses.sample,
     photo: "https://source.unsplash.com/1600x900/?#{category}",
     rating: rand(1..5),
     category: category,
