@@ -59,6 +59,7 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
+    redirect_to properties_path
   end
 
   private
@@ -76,6 +77,6 @@ class PropertiesController < ApplicationController
   end
 
   def filtering_params(params)
-  params.slice(:category)
+    params.slice(:category)
   end
 end
