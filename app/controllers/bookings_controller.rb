@@ -17,13 +17,17 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @check_in = params[:booking][:check_in_date].to_datetime
+    @check_out = params[:booking][:check_out_date].to_datetime
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.property = @property
+    @property.availability << (@check_in..@check_out).to_a
     @booking.tot_price = calculate_tot_price(@property, @booking)
     authorize @booking
 
     if @booking.save
+      @property.save
       redirect_to property_path(@property), notice: 'Booking was successfully created.'
     else
       render :new
@@ -62,7 +66,9 @@ class BookingsController < ApplicationController
   end
 
   def calculate_tot_price(property, booking)
-    num_nights = booking.check_out_date - booking.check_in_date
+    # subtracting two date objects gives an answer in milliseconds
+    # dividing by 8640000 converts the answer to days
+    num_nights = (booking.check_out_date - booking.check_in_date)/8640000
 
     property.price * num_nights
   end
