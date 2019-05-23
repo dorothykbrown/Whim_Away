@@ -19,9 +19,16 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:category].present?
-      @properties = Property.where(category: params[:category])
+      @properties = Property.where(category: params[:category]).where.not(latitude: nil, longitude: nil)
     else
       @properties = Property.all
+    end
+    @markers = @properties.map do |property|
+      {
+        lat: property.latitude,
+        lng: property.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { property: property })
+      }
     end
   end
 
