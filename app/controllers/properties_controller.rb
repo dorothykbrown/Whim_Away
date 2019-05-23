@@ -52,7 +52,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update(property_params)
-      redirect_to properties_path, notice: 'Property was successfully updated.'
+      redirect_to @property, notice: 'Property was successfully updated.'
     else
       render :edit
     end
@@ -60,7 +60,6 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
-    redirect_to properties_path
   end
 
   private

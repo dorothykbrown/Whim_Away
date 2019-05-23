@@ -1,9 +1,9 @@
 <%= simple_form_for @property do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :photo, label: 'Photo URL' %>
-  <%= f.input :category, collection: [ "Treehouse", "Sailboat", "Castle"] %>
-  <%= f.input :description %>
-  <%= f.input :price, label: 'Price per night' %>
+  <%= f.input :name, label: 'Title of property', required: true %>
+  <%= f.input :address, label: 'Property location', required: true %>
+  <%= f.input :photo, label: 'Photo URL', required: true %>
+  <%= f.input :category, label: 'Category', collection: [ "Treehouse", "Sailboat", "Castle"], required: true %>
+  <%= f.input :description, label: 'Tell us about your property', required: true %>
+  <%= f.input :price, label: 'Price per night', required: true %>
   <%= f.submit :Submit, class: "btn btn-primary" %>
 <% end %>
