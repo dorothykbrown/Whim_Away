@@ -1,7 +1,9 @@
+<h1>My Bookings</h1>
 <ul>
   <% @bookings.each do |booking| %>
-    <li> <%= bookings.check_in_date %></li>
-    <li> <%= bookings.check_out_date %></li>
-    <li> <%= bookings.num_guests %></li>
+  <h2><%= booking.property.name %></h2>
+    <li> Check-in Date: <%= booking.check_in_date %></li>
+    <li> Check-out Date: <%= booking.check_out_date %></li>
+    <li> Number of Guests: <%= booking.num_guests %></li>
     <% end %>
 </ul>
