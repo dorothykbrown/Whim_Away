@@ -13,12 +13,7 @@
 
       <div class="form-wrapper" style="width: 305px;">
         <h4>Search by date</h4>
-
-        <%= simple_form_for :search, method: "get" do |f| %>
-        <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker"} %>
-        <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker"} %>
-        <%= f.button :submit, "Go", class: "btn btn-primary" %>
-        <% end %>
+        <%= render 'shared/datepickr', button_label: 'Go' %>
       </div>
       <div
       id="map"
