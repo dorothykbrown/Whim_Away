@@ -63,6 +63,10 @@ class PropertiesController < ApplicationController
     redirect_to properties_path
   end
 
+  def user_properties
+    @properties = Property.all.where(user: current_user)
+  end
+
   private
 
   def authorize_property
