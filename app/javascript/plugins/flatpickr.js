@@ -2,5 +2,6 @@ import flatpickr from "flatpickr"
 import "flatpickr/dist/themes/airbnb.css" // A path to the theme CSS
 
 flatpickr(".datepicker", {
-  // mode: "range"
+  minDate: "today",
+  dateFormat: "Y-m-d"
 })

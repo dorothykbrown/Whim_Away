@@ -2,18 +2,26 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
   before_action :authorize_property, only: %i[show update destroy]
 
+  # def index
+  #   # @properties = policy_scope(Property).all
+  #   # use javascript to filter all properties
+
+  #   @properties = policy_scope(Property).where.not(latitude: nil, longitude: nil)
+  #   # @properties.where.not(latitude: nil, longitude: nil)
+
+  #   @markers = @properties.map do |property|
+  #     {
+  #       lat: property.latitude,
+  #       lng: property.longitude
+  #     }
+  #   end
+  # end
+
   def index
-    # @properties = policy_scope(Property).all
-    # use javascript to filter all properties
-
-    @properties = policy_scope(Property).where.not(latitude: nil, longitude: nil)
-    # @properties.where.not(latitude: nil, longitude: nil)
-
-    @markers = @properties.map do |property|
-      {
-        lat: property.latitude,
-        lng: property.longitude
-      }
+    if params[:category].present?
+      @properties = Property.where(category: params[:category])
+    else
+      @properties = Property.all
     end
   end
 
@@ -52,6 +60,7 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
+    redirect_to properties_path
   end
 
   private
@@ -66,5 +75,9 @@ class PropertiesController < ApplicationController
 
   def property_params
     params.require(:property).permit(:name, :address, :photo, :rating, :category, :price, :available, :user, :description)
+  end
+
+  def filtering_params(params)
+    params.slice(:category)
   end
 end
