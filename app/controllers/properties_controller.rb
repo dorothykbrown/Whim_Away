@@ -20,6 +20,7 @@ class PropertiesController < ApplicationController
   def show
     # @properties = Property.where(category: params[:category
     @property = Property.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
