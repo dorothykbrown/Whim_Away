@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_095415) do
     t.datetime "check_in_date", null: false
     t.datetime "check_out_date", null: false
     t.integer "num_guests", null: false
+    t.text "description", null: false
     t.integer "tot_price", null: false
     t.bigint "user_id"
     t.bigint "property_id"
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_095415) do
     t.integer "rating"
     t.string "category", null: false
     t.integer "price", null: false
-    t.text "description", null: false
     t.boolean "available"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -46,9 +46,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_095415) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "photo", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
