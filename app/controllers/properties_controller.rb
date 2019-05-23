@@ -19,10 +19,11 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:category].present?
-      @properties = Property.where(category: params[:category])
+      @properties = Property.where(category: params[:category]).where.not(latitude: nil, longitude: nil)
     else
       @properties = Property.all
     end
+    
     if params[:check_in_date].present? && params[:check_out_date].present?
       @check_in = params[:check_in_date].to_datetime
       @check_out = params[:check_out_date].to_datetime
@@ -35,6 +36,15 @@ class PropertiesController < ApplicationController
       end
     end
     @properties
+
+    @markers = @properties.map do |property|
+      {
+        lat: property.latitude,
+        lng: property.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { property: property })
+      }
+    end
+
   end
 
   def show
@@ -64,7 +74,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update(property_params)
-      redirect_to properties_path, notice: 'Property was successfully updated.'
+      redirect_to @property, notice: 'Property was successfully updated.'
     else
       render :edit
     end
@@ -72,7 +82,10 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
-    redirect_to properties_path
+  end
+
+  def user_properties
+    @properties = Property.all.where(user: current_user)
   end
 
   # def availability_params
