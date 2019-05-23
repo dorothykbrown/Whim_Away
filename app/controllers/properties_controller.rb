@@ -23,6 +23,20 @@ class PropertiesController < ApplicationController
     else
       @properties = Property.all
     end
+    
+    if params[:check_in_date].present? && params[:check_out_date].present?
+      @check_in = params[:check_in_date].to_datetime
+      @check_out = params[:check_out_date].to_datetime
+      desired_dates = (@check_in..@check_out).to_a
+      @properties.each do |property|
+        booked_dates = property.availability.flatten
+        desired_dates.each do |date|
+          @properties.delete(properties) if booked_dates.include? date == true
+        end
+      end
+    end
+    @properties
+
     @markers = @properties.map do |property|
       {
         lat: property.latitude,
@@ -30,6 +44,7 @@ class PropertiesController < ApplicationController
         infoWindow: render_to_string(partial: "infowindow", locals: { property: property })
       }
     end
+
   end
 
   def show
@@ -72,6 +87,13 @@ class PropertiesController < ApplicationController
   def user_properties
     @properties = Property.all.where(user: current_user)
   end
+
+  # def availability_params
+  # params.require(:property).permit(:check_in_date, :check_out_date)
+  # @check_in = params[:check_in_date].to_datetime
+  # @check_out = params[:check_out_date].to_datetime
+  # byebug
+  # end
 
   private
 

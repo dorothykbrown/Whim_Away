@@ -20,7 +20,7 @@ addresses = ["lisbon, portugal", "sevilla, spain", "new york, new york"]
     rating: rand(1..5),
     category: category,
     price: rand(90..400).round(-1),
-    available: [true, false].sample,
+    availability: [],
     user: user,
     description:Faker::Quotes::Shakespeare.hamlet_quote
 }
