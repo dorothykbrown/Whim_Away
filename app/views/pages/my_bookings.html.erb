@@ -9,7 +9,7 @@
           <strong>Check-out:</strong> <%= booking.check_out_date %><br>
           <strong>Total Amount:</strong> $<%= booking.tot_price %>
         </p>
-        <p><%= link_to 'View booking details' %></p>
+        <p><%= link_to 'View property details', booking.property %></p>
       </div>
     </div>
   <% end %>
