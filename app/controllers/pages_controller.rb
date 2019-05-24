@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
   end
-
+  
   def my_properties
     @user = current_user
     @properties = @user.properties
@@ -13,6 +13,5 @@ class PagesController < ApplicationController
     @user = current_user
     @bookings = @user.bookings
   end
-
 
 end

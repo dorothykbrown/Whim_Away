@@ -23,6 +23,22 @@ class PropertiesController < ApplicationController
     else
       @properties = Property.all
     end
+
+    if params[:search].present?
+      @check_in = params[:search][:check_in_date].to_datetime
+      @check_out = params[:search][:check_out_date].to_datetime
+      desired_dates = (@check_in..@check_out).to_a
+      # @properties.each do |property|
+        desired_dates.each do |date|
+          @properties = @properties.select do |property|
+            # booked_dates = property.availability.flatten
+            property.availability.flatten.exclude? date
+          end
+        end
+    @properties
+          # byebug
+    end
+
     @markers = @properties.map do |property|
       {
         lat: property.latitude,
@@ -72,6 +88,13 @@ class PropertiesController < ApplicationController
   def user_properties
     @properties = Property.all.where(user: current_user)
   end
+
+  # def availability_params
+  # params.require(:property).permit(:check_in_date, :check_out_date)
+  # @check_in = params[:check_in_date].to_datetime
+  # @check_out = params[:check_out_date].to_datetime
+  # byebug
+  # end
 
   private
 
