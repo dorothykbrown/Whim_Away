@@ -66,9 +66,9 @@ class BookingsController < ApplicationController
   end
 
   def calculate_tot_price(property, booking)
-    # subtracting two date objects gives an answer in milliseconds
-    # dividing by 8640000 converts the answer to days
-    num_nights = (booking.check_out_date - booking.check_in_date)/8640000
+    # subtracting two date objects gives an answer in seconds
+    # dividing by 86400 converts the answer to days
+    num_nights = (booking.check_out_date - booking.check_in_date)/86400
 
     property.price * num_nights
   end
