@@ -37,7 +37,7 @@
       <%= link_to 'Edit', edit_property_path(@property)%> |
     <% end %>
     <% if  policy(@property).destroy? %>
-      <%= link_to 'Remove', property_path(@property), data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Remove', property_path(@property), data: { confirm: 'Are you sure?', method: :delete } %>
     <% end %>
   </div>
 </div>
