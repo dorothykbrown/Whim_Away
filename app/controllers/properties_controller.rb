@@ -35,6 +35,7 @@ class PropertiesController < ApplicationController
         end
       end
     end
+    @properties
 
 
     @markers = @properties.map do |property|
