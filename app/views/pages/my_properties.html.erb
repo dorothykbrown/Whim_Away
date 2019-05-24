@@ -4,8 +4,8 @@
     <div class="card-product mt-3">
       <%= image_tag(property.photo) %>
       <div class="card-product-infos">
-        <h2><%= property.name %></h2>
-        <p><%= property.category %></p>
+        <h2><%= link_to property.name, property_path(property) %></h2>
+        <p><em><%= property.category %></em></p>
         <p><b>Price:</b> $<%= property.price %>/night</p>
         <p><%= link_to 'Edit property', edit_property_path(property) %></p>
       <% end %>
