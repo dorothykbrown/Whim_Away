@@ -27,6 +27,7 @@ class PropertiesController < ApplicationController
     if params[:search].present?
       @check_in = params[:search][:check_in_date].to_datetime
       @check_out = params[:search][:check_out_date].to_datetime
+      
       desired_dates = (@check_in..@check_out).to_a
       # @properties.each do |property|
         desired_dates.each do |date|
@@ -82,7 +83,11 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
-    @property.destroy
+    if @property.destroy
+      redirect_to my_properties_path, notice: 'Property was successfully removed.'
+    else
+      render :index, notice: 'You have no properties to remove.'
+    end
   end
 
   def user_properties
