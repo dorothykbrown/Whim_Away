@@ -1,43 +1,14 @@
 <div class="container mt-3 mb-3">
   <h1>My Properties</h1>
   <% @properties.each do |property| %>
-    <li> <%= property.name %></li>
-</ul>
-
-<div class="container">
-  <div class="row">
-    <div class="col mt-3">
-      <div class="property">
+    <div class="card-product mt-3">
+      <%= image_tag(property.photo) %>
+      <div class="card-product-infos">
         <h2><%= property.name %></h2>
-        <h3><%= '⭐️' * property.rating.to_i %></h3>
-        <h5><em><%= property.category %></em></h5>
-        <h6><%= property.address %></h6>
-        <ul>
-          <li><b>Price per night:</b> $<%= property.price %></li>
-          <li><%= property.description %></li>
-        </ul>
-      </div>
+        <p><%= property.category %></p>
+        <p><b>Price:</b> $<%= property.price %>/night</p>
+        <p><%= link_to 'Edit property', edit_property_path(property) %></p>
+      <% end %>
     </div>
-    <div class="col mt-3">
-      <div class="property-image">
-        <%= image_tag(property.photo) %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col p-3">
-      <div class="btn btn-outline-primary">
-        <%= link_to 'Return to Listings', properties_path %>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-5">
-    <% if  policy(property).edit? %>
-      <%= link_to 'Edit', edit_property_path(property)%> |
-    <% end %>
-    <% if  policy(property).destroy? %>
-      <%= link_to 'Remove', property_path(property), data: { confirm: 'Are you sure?', method: :delete } %>
-    <% end %>
-    <% end %>
   </div>
 </div>
