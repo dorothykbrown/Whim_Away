@@ -1,9 +1,16 @@
-<h1>My Bookings</h1>
-<ul>
+<div class="container mt-3 mb-3">
+  <h1>My Bookings</h1>
   <% @bookings.each do |booking| %>
-  <h2><%= booking.property.name %></h2>
-    <li> Check-in Date: <%= booking.check_in_date %></li>
-    <li> Check-out Date: <%= booking.check_out_date %></li>
-    <li> Number of Guests: <%= booking.num_guests %></li>
-    <% end %>
-</ul>
+    <div class="card-product mt-3">
+      <%= image_tag(booking.property.photo) %>
+      <div class="card-product-infos">
+        <h2><%= booking.property.name %></h2>
+        <p><strong>Check-in:</strong> <%= booking.check_in_date %><br>
+          <strong>Check-out:</strong> <%= booking.check_out_date %><br>
+          <strong>Total Amount:</strong> $<%= booking.tot_price %>
+        </p>
+        <p><%= link_to 'View booking details' %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
