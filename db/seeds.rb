@@ -28,6 +28,54 @@ user = User.create(email: Faker::Internet.email, password: Faker::Internet.passw
 
 attributes = [
 
+ {
+  name: "Floaty Boathouse",
+  address: "Kingston, Jamaica",
+  photo: 'https://tse2.mm.bing.net/th?id=OIP.5_DYMMB4LLX1tbVfXznPOQHaEK&pid=Api',
+  category: 'Sailboat',
+  rating: 4,
+  price: 250,
+  availability: [],
+  user: user,
+  description: "Really awesome boathouse. Wont sink I promise."
+  },
+
+ {
+  name: "Mirror House",
+  address: "Harads, Sweden",
+  photo: 'https://static.boredpanda.com/blog/wp-content/uuuploads/amazing-treehouses/amazing-treehouses-10.jpg',
+  category: 'Treehouse',
+  rating: 2,
+  price: 300,
+  availability: [],
+  user: user,
+  description: "Almost invisible and perfect for hiding, the Mirror House is part of the Tree Hotel project in the North of Sweden. As cool as it looks, we’re afraid the house may be invisible to birds."
+  },
+
+ {
+  name: "Lakeside Castle Retreat",
+  address: "Connemara, Ireland",
+  photo: 'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAev4Oa.img?h=832&w=1598&m=6&q=60&u=t&o=f&l=f',
+  category: 'Castle',
+  rating: 4,
+  price: 800,
+  availability: [],
+  user: user,
+  description: "Charming lake-side castle with comfy beds that will allow guests to attain Sleeping Beauty levels of rest."
+  },
+
+ {
+  name: "Hideaway House",
+  address: "Miami, Florida",
+  photo: 'https://images.unsplash.com/photo-1534450539339-6d1c81ad18e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+  category: 'Castle',
+  rating: 4,
+  price: 375,
+  availability: [],
+  user: user,
+  description: "It's a small world afterall."
+  },
+
   {
   name: "Shannon's Texas Dreamboat",
   address: "A Lake Near Mark's Mom's House",
