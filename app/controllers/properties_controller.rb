@@ -21,9 +21,9 @@ class PropertiesController < ApplicationController
     if params[:category].present?
       @properties = Property.where(category: params[:category]).where.not(latitude: nil, longitude: nil)
     else
-      @properties = Property.all
+      @properties = Property.where("address ILIKE ?", "%#{params[:query]}%")
     end
-    
+
     if params[:check_in_date].present? && params[:check_out_date].present?
       @check_in = params[:check_in_date].to_datetime
       @check_out = params[:check_out_date].to_datetime
@@ -35,7 +35,7 @@ class PropertiesController < ApplicationController
         end
       end
     end
-    @properties
+
 
     @markers = @properties.map do |property|
       {
