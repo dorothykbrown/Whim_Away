@@ -4,14 +4,21 @@
       <div class="mb-5">
         <h4>Filter by Category</h4>
         <ul>
-          <li><h5><%= link_to 'All Types', properties_path %></h5></li>
-          <li><h5><%= link_to 'Treehouses', properties_path(:category=>"Treehouse") %></h5></li>
-          <li><h5><%= link_to 'Castles', properties_path(:category=>"Castle") %></h5></li>
-          <li><h5><%= link_to 'Sailboats', properties_path(:category=>"Sailboat") %></h5></li>
+          <li>
+            <h5><%= link_to 'All Types', properties_path %></h5>
+          </li>
+          <li>
+            <h5><%= link_to 'Treehouses', properties_path(:category=>"Treehouse") %></h5>
+          </li>
+          <li>
+            <h5><%= link_to 'Castles', properties_path(:category=>"Castle") %></h5>
+          </li>
+          <li>
+            <h5><%= link_to 'Sailboats', properties_path(:category=>"Sailboat") %></h5>
+          </li>
         </ul>
       </div>
-
-      <div class="form-wrapper" style="width: 305px;">
+      <div class="form-wrapper mb-5" style="width: 305px;">
         <h4>Search by date</h4>
         <%= render 'shared/datepickr', button_label: 'Go' %>
       </div>
@@ -23,11 +30,9 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
       ></div>
     </div>
-
     <div class="col-8">
       <h3><strong>Available Properties</strong></h3>
       <%= render 'shared/card' %>
     </div>
   </div>
-
 </div>

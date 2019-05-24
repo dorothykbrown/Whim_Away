@@ -1,6 +1,14 @@
-<ul>
+<div class="container mt-3 mb-3">
+  <h1>My Properties</h1>
   <% @properties.each do |property| %>
-    <li> <%= property.name %></li>
-  <% end %>
-</ul>
-
+    <div class="card-product mt-3">
+      <%= image_tag(property.photo) %>
+      <div class="card-product-infos">
+        <h2><%= property.name %></h2>
+        <p><%= property.category %></p>
+        <p><b>Price:</b> $<%= property.price %>/night</p>
+        <p><%= link_to 'Edit property', my_properties_path %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
