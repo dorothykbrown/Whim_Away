@@ -1,7 +1,6 @@
 <div class="container mt-3 mb-3">
   <h1>My Properties</h1>
   <% @properties.each do |property| %>
-    <li> <%= property.name %></li>
 </ul>
 
 <div class="container">
@@ -17,6 +16,17 @@
           <li><%= property.description %></li>
         </ul>
       </div>
+      <div class="btn btn-outline-primary mt-3">
+        <% if  policy(property).edit? %>
+        <%= link_to 'Edit', edit_property_path(property)%> |
+        <% end %>
+        <% if  policy(property).destroy? %>
+        <%= link_to 'Remove', property_path(property), data: { confirm: 'Are you sure?', method: :delete } %>
+        <% end %>
+      </div>
+      <div class="btn btn-outline-primary mt-3">
+        <%= link_to 'Return to Listings', properties_path %>
+      </div>
     </div>
     <div class="col mt-3">
       <div class="property-image">
@@ -24,20 +34,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col p-3">
-      <div class="btn btn-outline-primary">
-        <%= link_to 'Return to Listings', properties_path %>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-5">
-    <% if  policy(property).edit? %>
-      <%= link_to 'Edit', edit_property_path(property)%> |
-    <% end %>
-    <% if  policy(property).destroy? %>
-      <%= link_to 'Remove', property_path(property), data: { confirm: 'Are you sure?', method: :delete } %>
-    <% end %>
+
     <% end %>
   </div>
 </div>
