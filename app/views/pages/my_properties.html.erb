@@ -7,7 +7,7 @@
         <h2><%= property.name %></h2>
         <p><%= property.category %></p>
         <p><b>Price:</b> $<%= property.price %>/night</p>
-        <p><%= link_to 'Edit property', my_properties_path %></p>
+        <p><%= link_to 'Edit property', edit_property_path(property) %></p>
       <% end %>
     </div>
   </div>
