@@ -1,0 +1,11 @@
+
+
+<div style="width:600px;">
+<%= form_tag properties_path, method: :get do %>
+ <%= text_field_tag :query,
+   params[:query],
+   placeholder: "Enter your location"
+ %>
+  <%= submit_tag "Search", class: "btn btn-outline-primary",  :name => nil %>
+<% end %>
+</div>
